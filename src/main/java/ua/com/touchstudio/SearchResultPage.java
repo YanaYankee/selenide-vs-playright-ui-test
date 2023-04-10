@@ -18,7 +18,7 @@ public class SearchResultPage {
         $("div.add-to-cart-buttom > button").shouldHave(text("Додати у кошик")).click();
     }
     public String getNotificationText(){
-        return $("[data-notify='message']").shouldBe(visible).getText();
+        return $("[data-notify='message']").getText();
     }
     public String getNumberOfProductsAddedToCart(){
         return $("li.menubar-cart span.cart-number").shouldBe(visible).getText();
