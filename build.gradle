@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'ua.com.touchstudio'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junit5Ver = "5.8.1"
+}
+
+dependencies {
+    implementation 'com.codeborne:selenide:6.13.0'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5Ver"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5Ver"
+}
+
+test {
+    useJUnitPlatform()
+}
