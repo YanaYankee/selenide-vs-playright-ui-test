@@ -1,9 +1,8 @@
 package ua.com.touchstudio;
 
-import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -20,8 +19,9 @@ public class SearchResultPage {
     public String getNotificationText(){
         return $("[data-notify='message']").getText();
     }
-    public String getNumberOfProductsAddedToCart(){
-        return $("li.menubar-cart span.cart-number").shouldBe(visible).getText();
+    public SelenideElement checkNumberOfProductsAddedToCart(String expectedNumberOfProductsAdded){
+        return $("li.menubar-cart span.cart-number")
+                .shouldHave(text(expectedNumberOfProductsAdded));
     }
     public void goToCart(){
         $("li.menubar-cart i.icon-shopping-bag").click();

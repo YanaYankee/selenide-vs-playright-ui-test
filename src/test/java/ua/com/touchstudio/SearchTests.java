@@ -3,6 +3,7 @@ package ua.com.touchstudio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -37,9 +38,7 @@ public class SearchTests {
         var actualNotificationText = searchResultPage.getNotificationText();
         assertEquals(expectedNotificationText, actualNotificationText);
 
-//        var expectedNumberOfProductsAdded = "1";
-//        var actualNumberOfProductsAdded = searchResultPage.getNumberOfProductsAddedToCart();
-//        assertEquals(expectedNumberOfProductsAdded, actualNumberOfProductsAdded);
+        searchResultPage.checkNumberOfProductsAddedToCart("1");
 
         searchResultPage.goToCart();
 
