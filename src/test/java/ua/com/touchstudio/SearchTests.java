@@ -1,13 +1,15 @@
 package ua.com.touchstudio;
 
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.junit5.SoftAssertsExtension;
+import com.epam.reportportal.junit5.ReportPortalExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith({SoftAssertsExtension.class, ReportPortalExtension.class})
 public class SearchTests extends BaseTest {
     @BeforeEach
     void openHomePage() {
