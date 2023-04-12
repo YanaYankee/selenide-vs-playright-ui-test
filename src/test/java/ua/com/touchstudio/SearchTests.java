@@ -1,16 +1,19 @@
 package ua.com.touchstudio;
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SearchTests {
+public class SearchTests extends BaseTest {
     @BeforeEach
     void openHomePage() {
-        open("https://touchstudio.com.ua/");
+        open("/");
+        Selenide.clearBrowserCookies();
+        Selenide.clearBrowserLocalStorage();
     }
 
     @Test
@@ -20,28 +23,23 @@ public class SearchTests {
         SearchResultPage searchResultPage = new SearchResultPage();
         CartPage cartPage = new CartPage();
 
-        String productName = "Valve Steam Deck 64";
-        String expectedSearchResultPageTitle = "Результат поиска";
+        var productName = "Valve Steam Deck 64";
+        var expectedSearchResultPageTitle = "Результат поиска";
+        var expectedNotificationText = "Товар добавлен в корзину";
+        var numberOfAddedProducts = "1";
+
 
         homePage.getSearchForm();
         homePage.searchFor(productName);
 
-        var actualSearchResultPageTitle = searchResultPage.getSearchResultTitle();
-        assertEquals(expectedSearchResultPageTitle, actualSearchResultPageTitle);
-
-        var actualProductNameOnSearchResultPage = searchResultPage.getProductNameOnSearchResultPage();
-        assertEquals(productName, actualProductNameOnSearchResultPage);
-
+        searchResultPage.getSearchResultTitle(expectedSearchResultPageTitle);
+        searchResultPage.getProductNameOnSearchResultPage(productName);
         searchResultPage.addToCart();
 
-        var expectedNotificationText = "Товар добавлен в корзину";
-        var actualNotificationText = searchResultPage.getNotificationText();
-        assertEquals(expectedNotificationText, actualNotificationText);
-
-        searchResultPage.checkNumberOfProductsAddedToCart("1");
+        searchResultPage.getNotificationText(expectedNotificationText);
+        searchResultPage.checkNumberOfProductsAddedToCart(numberOfAddedProducts);
 
         searchResultPage.goToCart();
-
         cartPage.checkIfProductIsAddedToCart(productName);
     }
 }

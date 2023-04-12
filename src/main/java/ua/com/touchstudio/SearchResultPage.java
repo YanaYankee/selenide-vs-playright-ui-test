@@ -4,26 +4,30 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public class SearchResultPage {
-    public String getSearchResultTitle(){
-        return $("h1").getText();
+    public void getSearchResultTitle(String title) {
+        $("h1").shouldHave(text(title));
     }
-    public String getProductNameOnSearchResultPage(){
-        return $("h2.product-name").getText();
+
+    public void getProductNameOnSearchResultPage(String productName) {
+        $("h2.product-name").shouldHave(text(productName));
     }
-    public void addToCart(){
+
+    public void addToCart() {
         $("div.add-to-cart-buttom > button").shouldHave(text("Додати у кошик")).click();
     }
-    public String getNotificationText(){
-        return $("[data-notify='message']").getText();
+
+    public void getNotificationText(String notification) {
+        $("[data-notify='message']").shouldHave(text(notification));
     }
-    public SelenideElement checkNumberOfProductsAddedToCart(String expectedNumberOfProductsAdded){
+
+    public SelenideElement checkNumberOfProductsAddedToCart(String expectedNumberOfProductsAdded) {
         return $("li.menubar-cart span.cart-number")
                 .shouldHave(text(expectedNumberOfProductsAdded));
     }
-    public void goToCart(){
+
+    public void goToCart() {
         $("li.menubar-cart i.icon-shopping-bag").click();
         $("div#cart-mini div.cart-action > a").shouldHave(text("Показать корзину")).click();
     }
