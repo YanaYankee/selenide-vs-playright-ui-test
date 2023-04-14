@@ -6,20 +6,24 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SearchResultPage {
-    public void getSearchResultTitle(String title) {
+    public SearchResultPage getSearchResultTitle(String title) {
         $("h1").shouldHave(text(title));
+        return new SearchResultPage();
     }
 
-    public void getProductNameOnSearchResultPage(String productName) {
+    public SearchResultPage getProductNameOnSearchResultPage(String productName) {
         $("h2.product-name").shouldHave(text(productName));
+        return new SearchResultPage();
     }
 
-    public void addToCart() {
+    public SearchResultPage addToCart() {
         $("div.add-to-cart-buttom > button").shouldHave(text("Додати у кошик")).click();
+        return new SearchResultPage();
     }
 
-    public void getNotificationText(String notification) {
+    public SearchResultPage getNotificationText(String notification) {
         $("[data-notify='message']").shouldHave(text(notification));
+        return new SearchResultPage();
     }
 
     public SelenideElement checkNumberOfProductsAddedToCart(String expectedNumberOfProductsAdded) {
@@ -27,9 +31,10 @@ public class SearchResultPage {
                 .shouldHave(text(expectedNumberOfProductsAdded));
     }
 
-    public void goToCart() {
+    public SearchResultPage goToCart() {
         $("li.menubar-cart i.icon-shopping-bag").click();
         $("div#cart-mini div.cart-action > a").shouldHave(text("Показать корзину")).click();
+        return new SearchResultPage();
     }
 
 }

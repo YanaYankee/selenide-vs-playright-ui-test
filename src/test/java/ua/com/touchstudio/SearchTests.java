@@ -21,27 +21,23 @@ public class SearchTests extends BaseTest {
     @Test
     void searchProductByTitle() {
 
-        HomePage homePage = new HomePage();
-        SearchResultPage searchResultPage = new SearchResultPage();
-        CartPage cartPage = new CartPage();
-
         var productName = "Valve Steam Deck 64";
         var expectedSearchResultPageTitle = "Результат поиска";
         var expectedNotificationText = "Товар добавлен в корзину";
         var numberOfAddedProducts = "1";
 
+        new HomePage()
+                .getSearchForm()
+                .searchFor(productName);
 
-        homePage.getSearchForm();
-        homePage.searchFor(productName);
+        new SearchResultPage()
+                .getSearchResultTitle(expectedSearchResultPageTitle)
+                .getProductNameOnSearchResultPage(productName)
+                .addToCart()
+                .getNotificationText(expectedNotificationText)
+                .checkNumberOfProductsAddedToCart(numberOfAddedProducts);
+        new SearchResultPage().goToCart();
 
-        searchResultPage.getSearchResultTitle(expectedSearchResultPageTitle);
-        searchResultPage.getProductNameOnSearchResultPage(productName);
-        searchResultPage.addToCart();
-
-        searchResultPage.getNotificationText(expectedNotificationText);
-        searchResultPage.checkNumberOfProductsAddedToCart(numberOfAddedProducts);
-
-        searchResultPage.goToCart();
-        cartPage.checkIfProductIsAddedToCart(productName);
+        new CartPage().checkIfProductIsAddedToCart(productName);
     }
 }

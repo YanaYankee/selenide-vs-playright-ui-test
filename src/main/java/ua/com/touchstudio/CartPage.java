@@ -7,9 +7,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class CartPage {
-    public void checkIfProductIsAddedToCart(String productName) {
+    public CartPage checkIfProductIsAddedToCart(String productName) {
         $("h1.page-header").shouldHave(text("Корзина"));
         $$(".table-cart tbody tr").shouldHave(CollectionCondition.size(1));
         $("h3.product-title").shouldHave(text(productName));
+        return new CartPage();
     }
 }

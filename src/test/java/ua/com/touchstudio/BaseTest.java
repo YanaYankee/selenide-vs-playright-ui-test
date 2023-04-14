@@ -5,7 +5,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.epam.reportportal.selenide.ReportPortalSelenideEventListener;
 
-public abstract class BaseTest {
+public abstract class BaseTest<T> {
     static {
         Configuration.baseUrl = "https://touchstudio.com.ua";
         Configuration.browser = "safari";
