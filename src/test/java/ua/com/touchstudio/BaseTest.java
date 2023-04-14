@@ -7,12 +7,12 @@ import com.epam.reportportal.selenide.ReportPortalSelenideEventListener;
 
 public abstract class BaseTest {
     static {
-    Configuration.baseUrl = "https://touchstudio.com.ua";
-    Configuration.browser = "safari";
-    Configuration.browserVersion = "15.4";
-    Configuration.assertionMode = AssertionMode.STRICT;
+        Configuration.baseUrl = "https://touchstudio.com.ua";
+        Configuration.browser = "safari";
+        Configuration.browserVersion = "15.4";
+        Configuration.assertionMode = AssertionMode.STRICT;
 
-    SelenideLogger.addListener("Report Portal logger", new ReportPortalSelenideEventListener());
+        SelenideLogger.addListener("Report Portal logger", new ReportPortalSelenideEventListener());
 
     }
 }
