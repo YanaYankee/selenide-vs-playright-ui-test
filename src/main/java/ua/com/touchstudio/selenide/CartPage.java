@@ -1,4 +1,4 @@
-package ua.com.touchstudio;
+package ua.com.touchstudio.selenide;
 
 import com.codeborne.selenide.CollectionCondition;
 

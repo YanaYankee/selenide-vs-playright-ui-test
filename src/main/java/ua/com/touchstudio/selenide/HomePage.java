@@ -1,10 +1,10 @@
-package ua.com.touchstudio;
+package ua.com.touchstudio.selenide;
 
 import static com.codeborne.selenide.Selenide.$;
 
 
 public class HomePage {
-    public HomePage getSearchForm() {
+    public HomePage openSearchForm() {
         $("#open-search-form").click();
         return new HomePage();
     }

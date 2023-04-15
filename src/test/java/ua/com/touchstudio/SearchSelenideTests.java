@@ -6,11 +6,14 @@ import com.epam.reportportal.junit5.ReportPortalExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import ua.com.touchstudio.selenide.CartPage;
+import ua.com.touchstudio.selenide.HomePage;
+import ua.com.touchstudio.selenide.SearchResultPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
 @ExtendWith({SoftAssertsExtension.class, ReportPortalExtension.class})
-public class SearchTests extends BaseTest {
+public class SearchSelenideTests extends BaseTest {
     @BeforeEach
     void openHomePage() {
         open("/");
@@ -27,14 +30,14 @@ public class SearchTests extends BaseTest {
         var numberOfAddedProducts = "1";
 
         new HomePage()
-                .getSearchForm()
+                .openSearchForm()
                 .searchFor(productName);
 
         new SearchResultPage()
-                .getSearchResultTitle(expectedSearchResultPageTitle)
-                .getProductNameOnSearchResultPage(productName)
+                .checkSearchResultTitle(expectedSearchResultPageTitle)
+                .checkProductNameOnSearchResultPage(productName)
                 .addToCart()
-                .getNotificationText(expectedNotificationText)
+                .checkNotificationText(expectedNotificationText)
                 .checkNumberOfProductsAddedToCart(numberOfAddedProducts);
         new SearchResultPage().goToCart();
 
